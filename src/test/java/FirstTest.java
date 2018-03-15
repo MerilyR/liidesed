@@ -35,47 +35,35 @@ public class FirstTest {
     public void second(){
         assertEquals (3, t.getX());
         assertEquals (5, t.getY());
-        assertEquals (1, t.getDirection());
+        assertEquals (Angle.right, t.getAngle());
     }
     @Test
     public void turnRightTest() {
-        assertEquals (1, t.getDirection());
         assertEquals (Angle.right, t.getAngle());
         t.rotateRight();
-        assertEquals (2, t.getDirection());
         assertEquals (Angle.down, t.getAngle());
         t.rotateRight();
-        assertEquals (3, t.getDirection());
         t.rotateRight();
-        assertEquals (4, t.getDirection());
         assertEquals (Angle.up, t.getAngle());
         t.rotateRight();
-        assertEquals (1, t.getDirection());
     }
     @Test
     public void turnLefttTest() {
-        assertEquals (1, t.getDirection());
         t.rotateLeft();
-        assertEquals (4, t.getDirection());
         assertEquals (Angle.up, t.getAngle());
         t.rotateLeft();
-        assertEquals (3, t.getDirection());
         t.rotateLeft();
-        assertEquals (2, t.getDirection());
         assertEquals (Angle.down, t.getAngle());
         t.rotateLeft();
-        assertEquals (1, t.getDirection());
     }
     
     @Test public void moveTest() {
         assertEquals (3, t.getX());
         assertEquals (5, t.getY());
-        assertEquals (1, t.getDirection());
         assertEquals (Angle.right, t.getAngle());
         t.step();
         assertEquals (4, t.getX());
         assertEquals (5, t.getY());
-        assertEquals (1, t.getDirection());
         assertEquals (Angle.right, t.getAngle());
         t.rotateRight();
         t.step();
@@ -83,7 +71,6 @@ public class FirstTest {
         t.step();
         assertEquals (3, t.getX());
         assertEquals (6, t.getY());
-        assertEquals (3, t.getDirection());
         assertEquals (Angle.left, t.getAngle());
     }
 }
