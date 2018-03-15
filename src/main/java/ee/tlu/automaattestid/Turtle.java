@@ -69,5 +69,22 @@ public class Turtle {
                 break;
         }
     }
+
+    @Override
+    public String toString() {
+        switch (angle) {
+            case right:
+                return ">";
+            case down:
+                return "v";
+            case left:
+                return "<";
+            case up: 
+                return "^";
+        }
+        return null;
+    }
+    
+    
     
 }

@@ -1,3 +1,5 @@
+package ee.tlu.automaattestid;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -64,6 +66,19 @@ public class FirstTest {
         t.rotateRight();
         t.step();
         assertPosition (3, 6, Angle.left);
+    }
+    
+    @Test public void showTest() {
+        assertEquals(">", t.toString());
+        t.rotateRight();
+        assertEquals("v", t.toString());
+        t.rotateRight();
+        assertEquals("<", t.toString());
+        t.rotateRight();
+        assertEquals("^", t.toString());
+        t.rotateRight();
+        assertEquals(">", t.toString());
+        t.rotateRight();
     }
 
     private void assertPosition(int x, int y, Angle angle) {

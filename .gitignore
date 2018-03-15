@@ -2,3 +2,4 @@
 *.class
 
 target/test-classes/FirstTest.class
+target/classes/ee/tlu/automaattestid/Turtle.class
