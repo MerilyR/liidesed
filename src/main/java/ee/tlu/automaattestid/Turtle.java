@@ -6,7 +6,7 @@ package ee.tlu.automaattestid;
  */
 public class Turtle {
 
-    /*
+    
     public enum Angle {
         right, down, left, up;
         public Angle next() {
@@ -37,9 +37,9 @@ public class Turtle {
             return vals[(this.ordinal()-1) % vals.length];
         }
     };
-    */
     
-//    Angle angle;
+    
+    Angle angle;
     int direction;
     private int x, y;
     
@@ -47,7 +47,7 @@ public class Turtle {
         x = tx;
         y = ty;
         direction = 1;
-//        angle = Angle.right;
+        angle = Angle.right;
     }
 
     public int getX() {
@@ -62,14 +62,14 @@ public class Turtle {
         return direction;
     }
     
-//    public Angle getAngle() {
-//        System.out.println("Angle - "+angle);
-//        return angle;
-//    }
+    public Angle getAngle() {
+        System.out.println("Angle - "+angle);
+        return angle;
+    }
 
     public void rotateRight() {
 //        angle = angle.next();
-//        angle = angle.nextAngle();
+        angle = angle.nextAngle();
         direction ++;
         if (direction > 4)
             direction = direction - 4;
@@ -77,7 +77,7 @@ public class Turtle {
     
     public void rotateLeft() {
 //        angle = angle.previous();
-//        angle = angle.previousAngle();
+        angle = angle.previousAngle();
         direction --;
         if (direction < 1)
             direction = direction + 4;
@@ -87,6 +87,7 @@ public class Turtle {
      * Take 1 step in direction
      */
     public void step () {
+/*
         switch(direction) {
             case 1:
                 x ++;
@@ -101,6 +102,22 @@ public class Turtle {
                 y --;
                 break;
         }
+*/
+        switch (angle) {
+            case right:
+                x ++;
+                break;
+            case down:
+                y ++;
+                break;
+            case left:
+                x --;
+                break;
+            case up: 
+                y --;
+                break;
+        }
+
     }
     
 }

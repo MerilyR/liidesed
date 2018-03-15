@@ -6,7 +6,7 @@
 
 
 import ee.tlu.automaattestid.Turtle;
-//import ee.tlu.automaattestid.Turtle.Angle;
+import ee.tlu.automaattestid.Turtle.Angle;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -40,15 +40,15 @@ public class FirstTest {
     @Test
     public void turnRightTest() {
         assertEquals (1, t.getDirection());
-//        assertEquals (Angle.right, t.getAngle());
+        assertEquals (Angle.right, t.getAngle());
         t.rotateRight();
         assertEquals (2, t.getDirection());
-//        assertEquals (Angle.down, t.getAngle());
+        assertEquals (Angle.down, t.getAngle());
         t.rotateRight();
         assertEquals (3, t.getDirection());
         t.rotateRight();
         assertEquals (4, t.getDirection());
-//        assertEquals (Angle.up, t.getAngle());
+        assertEquals (Angle.up, t.getAngle());
         t.rotateRight();
         assertEquals (1, t.getDirection());
     }
@@ -57,12 +57,12 @@ public class FirstTest {
         assertEquals (1, t.getDirection());
         t.rotateLeft();
         assertEquals (4, t.getDirection());
-//        assertEquals (Angle.up, t.getAngle());
+        assertEquals (Angle.up, t.getAngle());
         t.rotateLeft();
         assertEquals (3, t.getDirection());
         t.rotateLeft();
         assertEquals (2, t.getDirection());
-//        assertEquals (Angle.down, t.getAngle());
+        assertEquals (Angle.down, t.getAngle());
         t.rotateLeft();
         assertEquals (1, t.getDirection());
     }
@@ -71,9 +71,19 @@ public class FirstTest {
         assertEquals (3, t.getX());
         assertEquals (5, t.getY());
         assertEquals (1, t.getDirection());
+        assertEquals (Angle.right, t.getAngle());
         t.step();
         assertEquals (4, t.getX());
         assertEquals (5, t.getY());
         assertEquals (1, t.getDirection());
+        assertEquals (Angle.right, t.getAngle());
+        t.rotateRight();
+        t.step();
+        t.rotateRight();
+        t.step();
+        assertEquals (3, t.getX());
+        assertEquals (6, t.getY());
+        assertEquals (3, t.getDirection());
+        assertEquals (Angle.left, t.getAngle());
     }
 }
