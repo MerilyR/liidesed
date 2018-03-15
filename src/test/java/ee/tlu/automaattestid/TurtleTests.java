@@ -7,7 +7,6 @@ package ee.tlu.automaattestid;
  */
 
 
-import ee.tlu.automaattestid.Turtle;
 import ee.tlu.automaattestid.Turtle.Angle;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,9 +16,9 @@ import org.junit.Before;
  *
  * @author Merily.Rooparg
  */
-public class FirstTest {
+public class TurtleTests {
     
-    public FirstTest() {
+    public TurtleTests() {
     }
     @Test
     public void first() {
