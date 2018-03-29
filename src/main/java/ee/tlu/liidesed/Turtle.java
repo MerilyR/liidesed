@@ -67,6 +67,20 @@ public class Turtle implements PlacedObject {
         setAngle(getAngle().previous());
     }
     
+    public Place nextPlace () {
+        switch (getAngle()) {
+            case right:
+                return new Place (getX() + 1, getY());
+            case down:
+                return new Place (getX(), getY() + 1);
+            case left:
+                return new Place (getX() - 1, getY());
+            case up: 
+                return new Place (getX(), getY() - 1);
+        }
+        return new Place (getX(), getY());
+    }
+    
     /**
      * Take 1 step in direction
      */

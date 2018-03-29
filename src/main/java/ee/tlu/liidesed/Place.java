@@ -5,19 +5,27 @@
  */
 package ee.tlu.liidesed;
 
+import ee.tlu.liidesed.PlacedObject;
+
 /**
  *
  * @author Merily.Rooparg
  */
-public class Rock extends Place {
+public class Place implements PlacedObject{
+    int x, y;
 
-    public Rock( int x, int y) {
-        super (x, y);
+    public Place(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
- 
+
     @Override
-    public String toString() {
-        return "o";
+    public int getX() {
+        return x;
     }
-    
+
+    @Override
+    public int getY() {
+        return y;
+    }
 }
