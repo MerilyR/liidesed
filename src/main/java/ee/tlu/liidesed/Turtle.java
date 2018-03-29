@@ -9,8 +9,6 @@ import java.util.Map;
  */
 public class Turtle implements PlacedObject {
 
-    
-    
     public enum Angle {
         right, down, left, up;
         private static final Angle[] vals = values();
