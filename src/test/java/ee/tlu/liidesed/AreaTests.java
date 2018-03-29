@@ -112,5 +112,24 @@ public class AreaTests {
         assertFalse (area.addRock(0,0));
         assertTrue (area.addRock (1, 2));
         assertFalse (area.addRock (1,2));
+    
     }
+    
+    public void rockTest () {
+        assertTrue (a.addRock(8, 8));
+        
+        assertThat (a.toString(), is (
+                    ">.........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "........o.\n"+
+                    "..........\n"
+        ));
+    }
+    
 }

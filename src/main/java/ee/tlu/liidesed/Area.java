@@ -144,7 +144,9 @@ public class Area {
         if (!isFree(x, y))
             return false;
         
-        objects.add(new Rock (x, y));
+        Rock r = new Rock(x, y);
+        objects.add(r);
+        m [r.getX()][r.getY()] = r.toString().charAt(0);
         return true;
     }
     

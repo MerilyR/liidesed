@@ -28,4 +28,9 @@ public class Rock implements PlacedObject {
         return y;
     }
  
+    @Override
+    public String toString() {
+        return "o";
+    }
+    
 }
