@@ -5,16 +5,22 @@
  */
 package ee.tlu.liidesed;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Merily.Rooparg
  */
 public class Area {
 
+    
+
     public enum Command {FWD, BWD}
     
     int w, h;
     char[][] m;
+    List <PlacedObject> objects = new ArrayList<>();
     
     public Area(int width, int height) {
         w = width;
@@ -22,23 +28,46 @@ public class Area {
         m = new char[w][h];
         clearArea();
         setTurtle (new Turtle (0,0));
+        objects.add(turtle);
     }
     
-    public void clearArea(){
+    private void clearArea(){
         turtle = null;
         for (int y = 0; y < m[0].length; y ++ ) 
             for (char[] m1 : m) {
                 m1[y] = '.';
             }
     }
+    
+    public boolean isFree (int x, int y) {
+        if (x<0 || y<0)
+            return false;
+        if (x>=m.length || y>=m[0].length)
+            return false;
         
+        /*
+        for (PlacedObject obj : objects)
+            if (obj.getX() == x && obj.getY()==y)
+                return false;
+        
+        OR
+        
+        if (!objects.stream().noneMatch((obj) -> (obj.getX() == x && obj.getY() == y)))
+            return false;
+           
+        return true;
+        */
+        
+        return objects.stream().noneMatch((obj) -> (obj.getX() == x && obj.getY() == y));
+    }
+    
     Turtle turtle;
     
     public Turtle getTurtle() {
         return turtle;
     }
     
-    public void setTurtle(Turtle t) {
+    private void setTurtle(Turtle t) {
         // remove turtle
         if (turtle != null)
             m [turtle.getX()][turtle.getY()] = '.';
@@ -46,7 +75,6 @@ public class Area {
         turtle = t;
         m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
     }
-
     
     public void command (Command c) {
         switch (c) {
@@ -109,6 +137,15 @@ public class Area {
             return true;
         System.out.println("Turtle is out of area!!!");
         return false;
+    }
+    
+    public boolean addRock(int x, int y) {
+        
+        if (!isFree(x, y))
+            return false;
+        
+        objects.add(new Rock (x, y));
+        return true;
     }
     
     @Override

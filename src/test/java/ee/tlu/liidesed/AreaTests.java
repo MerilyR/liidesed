@@ -1,9 +1,10 @@
 
 package ee.tlu.liidesed;
 
-import ee.tlu.liidesed.Area;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class AreaTests {
     }
     
     @Test
-    public void mvoeTest() {
+    public void moveTest() {
         a.command (Area.Command.FWD);
         assertThat (a.toString(), is (
                     "*>........\n"+
@@ -82,4 +83,34 @@ public class AreaTests {
         ));
     }
     
+    @Test
+    public void isFreeTest () {
+        assertFalse (a.isFree(0, 0));
+        assertTrue (a.isFree(1, 0));
+        assertFalse (a.isFree (-1, 5));
+        assertFalse (a.isFree(9, 10));
+    }
+    
+    @Test
+    public void smallAreaTest () {
+        Area area = new Area (3, 6);
+        area.commandsAsString("frff");
+        assertTrue (area.isFree (2, 5));
+        assertFalse (area.isFree (5, 2));
+        assertTrue (area.isFree (0,0));
+        assertFalse (area.isFree (1, 2));
+    }
+    
+    @Test
+    public void areaRockTest () {
+        Area area = new Area (5, 5);
+        area.addRock (2, 3);
+        assertFalse (area.isFree(2, 3));
+        area.addRock (3, 2);
+        assertFalse (area.isFree(3, 2));
+        
+        assertFalse (area.addRock(0,0));
+        assertTrue (area.addRock (1, 2));
+        assertFalse (area.addRock (1,2));
+    }
 }
