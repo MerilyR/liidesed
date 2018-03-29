@@ -42,7 +42,7 @@ public class AreaTests {
     
     @Test
     public void moveTest() {
-        a.command (Area.Command.FWD);
+        assertTrue (a.command (Area.Command.FWD));
         assertThat (a.toString(), is (
                     "*>........\n"+
                     "..........\n"+
@@ -55,7 +55,7 @@ public class AreaTests {
                     "..........\n"+
                     "..........\n"
         ));
-        a.commandsAsString ("frff");
+        assertTrue (a.commandsAsString ("frff"));
         assertThat (a.toString(), is (
                     "***.......\n"+
                     "..*.......\n"+
@@ -68,14 +68,14 @@ public class AreaTests {
                     "..........\n"+
                     "..........\n"
         ));
-        a.commandsAsString ("lfflfffrffrffffffl");
+        assertFalse (a.commandsAsString ("lfflfffrffrffffffl"));
         assertThat (a.toString(), is (
-                    "***.*.*...\n"+
-                    "..*.*.*...\n"+
-                    "..***.*...\n"+
-                    "......*...\n"+
-                    "......*...\n"+
-                    "......>...\n"+
+                    "***.^.....\n"+
+                    "..*.*.....\n"+
+                    "..***.....\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
                     "..........\n"+
                     "..........\n"+
                     "..........\n"+
@@ -132,4 +132,35 @@ public class AreaTests {
         ));
     }
     
+    
+    public void turtleAgainstRockTest () {
+        a.commandsAsString ("ffrff");
+        assertThat (a.toString(), is (
+                    "***.......\n"+
+                    "..*.......\n"+
+                    "..v.......\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"
+        ));
+        
+        assertTrue (a.addRock(4, 3));
+        assertThat (a.toString(), is (
+                    "***.......\n"+
+                    "..*.......\n"+
+                    "..v.......\n"+
+                    "..o.......\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"+
+                    "..........\n"
+        ));
+        assertFalse (a.command('f'));
+    }
 }

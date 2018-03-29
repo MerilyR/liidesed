@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class Area {
 
+
+
     
 
     public enum Command {FWD, BWD}
@@ -61,6 +63,10 @@ public class Area {
         return objects.stream().noneMatch((obj) -> (obj.getX() == x && obj.getY() == y));
     }
     
+    public  boolean isFree(Place p) {
+        return isFree (p.getX(), p.getY());
+    }
+    
     Turtle turtle;
     
     public Turtle getTurtle() {
@@ -76,19 +82,20 @@ public class Area {
         m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
     }
     
-    public void command (Command c) {
+    public boolean command (Command c) {
         switch (c) {
             case FWD:
-                moveForward();
-                break;
+                return moveForward();
+            //case BWD:
+                //return moveBackward();
         }
+        return false;
     }
     
-    public void command (char c) {
+    public boolean command (char c) {
         switch (c) {
             case 'f' :
-                moveForward();
-                break;
+                return moveForward();
             case ('r'):
                 turnRight();
                 break;
@@ -96,22 +103,32 @@ public class Area {
                 turnLeft();
                 break;
         }
+        return true;
     }
     
-    public void commandsAsString(String s) {
-        for (char c : s.toCharArray())
-            command (c);
+    public boolean commandsAsString(String s) {
+        for (char c : s.toCharArray()) {
+            if (!command (c))
+                return false;
+            else 
+                System.out.println(this.toString() + "/n");
+        }
+        return true;
     }
     
-    private void moveForward () {
+    private boolean moveForward () {
         if (!outOfArea (turtle))        
             // set current position to *
             m [turtle.getX()][turtle.getY()] = '*';
         // step to direction
+        if (!isFree(turtle.nextPlace()))
+            return false;
+
         turtle.step();
-        if (!outOfArea (turtle))
         // set new position
-            m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);            
+        m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
+        return true;       
+        
     }
     
     private void turnRight () {
@@ -131,12 +148,11 @@ public class Area {
     }
     
     private boolean outOfArea (Turtle t) {
-        if (t.getX() < 0)
-            return true;
-        if (t.getY() < 0)
-            return true;
+        if (t.getX () >= 0 && t.getY()   >= 0)
+            return false;
+        
         System.out.println("Turtle is out of area!!!");
-        return false;
+        return true;
     }
     
     public boolean addRock(int x, int y) {
