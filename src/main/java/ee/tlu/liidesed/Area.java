@@ -117,13 +117,14 @@ public class Area {
     }
     
     private boolean moveForward () {
-        if (!outOfArea (turtle))        
-            // set current position to *
-            m [turtle.getX()][turtle.getY()] = '*';
-        // step to direction
         if (!isFree(turtle.nextPlace()))
             return false;
-
+        
+        //if (!outOfArea (turtle))        
+        //leave trail - set current position to *
+        m [turtle.getX()][turtle.getY()] = '*';
+        
+        // step to direction
         turtle.step();
         // set new position
         m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
@@ -134,19 +135,19 @@ public class Area {
     private void turnRight () {
         // step to direction
         turtle.rotateRight();
-        if (!outOfArea (turtle))  
+        //if (!outOfArea (turtle))  
         // set new position
-            m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
+        m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
     }
     
     private void turnLeft () {
         // step to direction
         turtle.rotateLeft();
-        if (!outOfArea (turtle))  
+        //if (!outOfArea (turtle))  
         // set new position
-            m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
+        m [turtle.getX()][turtle.getY()] = turtle.toString().charAt(0);
     }
-    
+    /* NOT used, cause isFree already stops (should!) the turtle from moving out of the area
     private boolean outOfArea (Turtle t) {
         if (t.getX () >= 0 && t.getY()   >= 0)
             return false;
@@ -154,6 +155,7 @@ public class Area {
         System.out.println("Turtle is out of area!!!");
         return true;
     }
+    */
     
     public boolean addRock(int x, int y) {
         
