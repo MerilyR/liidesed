@@ -1,4 +1,4 @@
-package ee.tlu.automaattestid;
+package ee.tlu.liidesed;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,8 @@ package ee.tlu.automaattestid;
  */
 
 
-import ee.tlu.automaattestid.Turtle.Angle;
+import ee.tlu.liidesed.Turtle;
+import ee.tlu.liidesed.Turtle.Angle;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;

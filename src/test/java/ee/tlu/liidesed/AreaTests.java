@@ -1,6 +1,7 @@
 
-package ee.tlu.automaattestid;
+package ee.tlu.liidesed;
 
+import ee.tlu.liidesed.Area;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;

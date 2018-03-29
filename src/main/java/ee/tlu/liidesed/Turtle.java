@@ -1,15 +1,19 @@
-package ee.tlu.automaattestid;
+package ee.tlu.liidesed;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Merily.Rooparg
  */
-public class Turtle {
+public class Turtle implements PlacedObject {
 
+    
     
     public enum Angle {
         right, down, left, up;
-        private static Angle[] vals = values();
+        private static final Angle[] vals = values();
         public Angle next() {
             return vals[(this.ordinal()+1) % vals.length];
         }
@@ -20,59 +24,74 @@ public class Turtle {
         }
     };
         
-    Angle angle;
-    private int x, y;
+//    Angle angle;
+//    private int x, y;
+    
+    Map<String, Object> data = new HashMap<>();
     
     public Turtle(int tx, int ty) {
-        x = tx;
-        y = ty;
-        angle = Angle.right;
+        setX(tx);
+        setY(ty);
+        setAngle(Angle.right);
     }
 
+    @Override
     public int getX() {
-        return x;
+        return (int) data.get("x");
     }
 
+    @Override
     public int getY() {
-        return y;
+        return (int) data.get("y");
     }
     
     public Angle getAngle() {
-        System.out.println("Angle - "+angle);
-        return angle;
+        return (Angle) data.get("angle");
     }
 
+    private void setX(int tx) {
+        data.put("x", tx);
+    } 
+    
+    private void setY(int ty) {
+        data.put("y", ty);
+    }
+    
+    private void setAngle(Angle angle) {
+        data.put("angle", angle);
+    }
+    
     public void rotateRight() {
-        angle = angle.next();
+        setAngle(getAngle().next());
     }
     
     public void rotateLeft() {
-        angle = angle.previous();
+        setAngle(getAngle().previous());
     }
     
     /**
      * Take 1 step in direction
      */
     public void step () {
-        switch (angle) {
+        switch (getAngle()) {
             case right:
-                x ++;
+                setX (getX() + 1);
                 break;
             case down:
-                y ++;
+                setY (getY() + 1);
                 break;
             case left:
-                x --;
+                setX (getX() - 1);
                 break;
             case up: 
-                y --;
+                setY (getY() - 1);
                 break;
         }
     }
 
     @Override
     public String toString() {
-        switch (angle) {
+        switch (getAngle()) {
             case right:
                 return ">";
             case down:
